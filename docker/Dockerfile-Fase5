@@ -1,4 +1,4 @@
 FROM openjdk:11
 RUN apt-get update && apt-get install -y wget
-RUN wget http://192.168.1.86:8081/job/esercizio/lastSuccessfulBuild/artifact/apps/backend/esercizio/target/backend.jar
+RUN wget http://192.168.1.86:8081/job/esercizio-pipeline/lastSuccessfulBuild/artifact/apps/backend/esercizio/target/backend.jar
 ENTRYPOINT ["java","-jar", "/backend.jar"]
