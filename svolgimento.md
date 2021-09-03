@@ -72,7 +72,7 @@
 ## Fase 4
 - Creazione del pipeline project
   - Riportare nel progetto le configurazioni comuni al progetto free style
-  - Aggiungere la [Pipleine](jenkins/pipeline-fase4.groovy)
+  - Aggiungere la [Pipeline](jenkins/pipeline-fase4.groovy)
   - Eseguire la build
   - Annotazioni:
     - Nella pipleine è stato usato un pluging per comprimere la directory di distribuzione; il plugin produce un archivio diverso dal comando tar di linux usato nel free style project
@@ -87,3 +87,23 @@
     }   
   ```
   - Verifica che http://localhost:8080 risponda correttamente
+  - __Attenzione__: nella esecuzione delle build dopo la prima si deve verificare che il contianer avviato alla build precedente sia stato arrestato prima di poter avviare il contianer della nuova build.
+
+## Fase 5
+- Creare un progetto Spring Boot da [Spring Intializr](https://start.spring.io/)
+  - Aggiungere le dipendenze desiderate (e.g. web)
+  - Scaricare lo ZIP del progetto nel workspace ed strarlo in una directory (e.g. apps/backend)
+  - Compilarlo usando maven
+```console
+cd apps/backend/esercizio
+mvn compile
+mvn spring-boot:run
+```
+  - Modificare il pom.xml secondo le necessità (e.g. modificando il finalName dell'artifact generato)
+- Modificare la pipeline
+  - Aggiungere il tool JDK per la compilazione con maven
+  - Aggiungere lo stage 'Backend' allo stage __parallel__
+  - Aggiungere gli step per pulizia, compilazione, packaging e test
+  - Aggiungere nelle azioni di post compilazione la pubblicazione dell'artifact e la pubblicazione dei risultati dei test con JUnit
+  - Pushare su git il workspace e lasciare che la build di Jenkins parta automaticamente
+
