@@ -1,5 +1,5 @@
 FROM nginx
-RUN apt-get update && apt-get install -y wget
-RUN wget http://192.168.1.86:8081/job/esercizio-pipeline/lastSuccessfulBuild/artifact/apps/frontend/dist.gz
-RUN tar -zxf dist.gz
+RUN apt-get update && apt-get install -y wget unzip
+RUN wget http://192.168.1.86:8081/job/esercizio-pipeline/lastSuccessfulBuild/artifact/apps/frontend/dist.zip
+RUN unzip dist.zip
 RUN mv esercizio/* /usr/share/nginx/html

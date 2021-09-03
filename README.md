@@ -34,5 +34,5 @@
 - Aggiungere al progetto (nel workspace) anche un backend Spring Boot
 - Buildare il progetto con maven nella pipeline già creata (in modalità parallel)
 - Creare un Dockerfile che crei un'immagine del backend
-- Aggiungere alla pipline la build dell'immagine
-- Aggiungere alla pipleine il run di un docker-compose che comprenda front end e back end
+- Aggiungere alla pipeline la build dell'immagine
+- Aggiungere alla pipeline il run di un docker-compose che comprenda front end e back end

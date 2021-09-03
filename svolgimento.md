@@ -107,4 +107,19 @@ mvn spring-boot:run
   - Aggiungere gli step per pulizia, compilazione, packaging e test
   - Aggiungere nelle azioni di post compilazione la pubblicazione dell'artifact e la pubblicazione dei risultati dei test con JUnit
   - Pushare su git il workspace e lasciare che la build di Jenkins parta automaticamente
-
+- Creare un [Dockerfile per il backend](docker/Dockerfile-Fase5)
+  - Partire da un'immagine di un JDK compatile
+  - Eseguire il download dell'ultimo artifact successful del backend
+  - Lanciare il programma Spring Boot
+- Creare gi step docker per il backend nella fase di deploy
+  - Parallelizzare il deploy di frontend e backend
+  - Eseguire il run dell'immagine del backend
+```groovy
+sh 'echo "Build e tag immagine"'
+dir('docker') {
+    sh "docker build -f Dockerfile-Fase5 -t esercizio/backend:latest -t esercizio/backend:${env.BUILD_NUMBER} ."
+    sh 'docker stop esercizio-api || true'
+    sh 'docker run -d --rm -p 8082:80 --name esercizio-api esercizio/backend'
+}
+```
+- Verificare che l'API del backend risponda su http://localhost:8082
