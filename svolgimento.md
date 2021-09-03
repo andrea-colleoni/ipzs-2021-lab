@@ -101,7 +101,8 @@ mvn spring-boot:run
 ```
   - Modificare il pom.xml secondo le necessità (e.g. modificando il finalName dell'artifact generato)
 - Modificare la pipeline
-  - Aggiungere il tool JDK per la compilazione con maven
+  - Aggiungere il tool JDK
+  - Aggiungere il tool Maven per la compilazione con maven
   - Aggiungere lo stage 'Backend' allo stage __parallel__
   - Aggiungere gli step per pulizia, compilazione, packaging e test
   - Aggiungere nelle azioni di post compilazione la pubblicazione dell'artifact e la pubblicazione dei risultati dei test con JUnit

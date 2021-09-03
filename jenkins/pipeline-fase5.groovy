@@ -3,6 +3,7 @@ pipeline {
     
     tools {
       jdk 'Jdk-11'
+      maven 'Maven 3.8.2'
       nodejs 'NodeJS 16.8'
     }
     
@@ -78,6 +79,17 @@ pipeline {
         success {
             archiveArtifacts artifacts: 'apps/backend/esercizio/target/backend.jar', followSymlinks: false
         }
+always {
+            junit 'apps/backend/esercizio/target/surefire-reports/*.xml'
+            writeFile encoding: 'UTF-8', 
+                file: 'BUILD.md', 
+                text: """# Informazioni di build
+
+__Data build__: """ + new java.util.Date().toString() + """
+__Progetto__: ${env.JOB_NAME} ${currentBuild.currentResult}
+__Build n. ${env.BUILD_NUMBER}__: ${currentBuild.result}"""     
+            archiveArtifacts artifacts: 'BUILD.md', followSymlinks: false
+        }        
     }
     
 }
