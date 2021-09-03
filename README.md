@@ -9,7 +9,7 @@
 - Pushare il progetto angular sul repository
 
 ### Fase 2 (solo docker)
-- Scrivere nel workspace un docker-compose che sia in grado di pubblicare il progetto angulare buildato in un container ottenuto da un'immagine NGINX
+- Scrivere nel workspace un docker-compose che sia in grado di pubblicare il progetto angular buildato, in un container ottenuto da un'immagine NGINX
 - Verificare che la web application funzioni
 
 ### Fase 3 (frestyle su jenkins e dockerfile da docker-cli)

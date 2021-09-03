@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  front:
+    image: nginx
+    volumes: 
+    - C:\Users\andre\Desktop\Temp\Corsi\Avalon\Zecca\laboratorio\esercizio-docker-devops\apps\frontend\esercizio-ng\dist\esercizio:/usr/share/nginx/html:ro
+    ports:
+    - 8080:80
+    networks:
+    - my_net 
+networks:
+  my_net:     
