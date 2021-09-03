@@ -12,7 +12,7 @@
 - Scrivere nel workspace un docker-compose che sia in grado di pubblicare il progetto angular buildato, in un container ottenuto da un'immagine NGINX
 - Verificare che la web application funzioni
 
-### Fase 3 (frestyle su jenkins e dockerfile da docker-cli)
+### Fase 3 (free style su jenkins e dockerfile da docker-cli)
 - Scrivere un Free style project che faccia la build del progetto angular (npm install + npm build) e archivi un archivio compresso ZIP di tale build
 - Scrivere un Dockerfile che faccia la build un'immagine dell'applicazione angular distribuita su jenkins
   - partire da un'immagine NGINX
