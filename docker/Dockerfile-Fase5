@@ -1,4 +1,4 @@
 FROM openjdk:11
-ARG JAR_FILE=../apps/backend/esercizio/target/backend.jar
-COPY ${JAR_FILE} api.jar
-ENTRYPOINT ["java","-jar", "/api.jar"]
+RUN apt-get update && apt-get install -y wget
+RUN wget http://192.168.1.86:8081/job/esercizio/lastSuccessfulBuild/artifact/apps/backend/esercizio/target/backend.jar
+ENTRYPOINT ["java","-jar", "/backend.jar"]
