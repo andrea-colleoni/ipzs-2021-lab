@@ -68,3 +68,22 @@
   docker run -p 8080:80 esercizio/frontend
   ```
   - Verifica che l'app funzioni: http://localhost:8080
+
+## Fase 4
+- Creazione del pipeline project
+  - Riportare nel progetto le configurazioni comuni al progetto free style
+  - Aggiungere la [Pipleine](jenkins/pipeline-fase4.groovy)
+  - Eseguire la build
+  - Annotazioni:
+    - Nella pipleine è stato usato un pluging per comprimere la directory di distribuzione; il plugin produce un archivio diverso dal comando tar di linux usato nel free style project
+- Aggiunta delle azioni di deployment con docker
+  - Aggiunta di un nuovo stage 'Deploy'
+  - Aggiunta dei comandi docker come shell script dalla directory con le risorse docker
+  ```groovy
+    sh 'echo "Build e tag immagine"'
+    dir('docker') {
+        sh "docker build -f Dockerfile-Fase3 -t esercizio/frontend:latest -t esercizio/frontend:${env.BUILD_NUMBER} ."
+        sh 'docker run -d -p 8080:80 --name esercizio-webapp esercizio/frontend'
+    }   
+  ```
+  - Verifica che http://localhost:8080 risponda correttamente
