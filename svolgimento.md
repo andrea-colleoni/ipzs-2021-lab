@@ -80,11 +80,16 @@
   - Aggiunta di un nuovo stage 'Deploy'
   - Aggiunta dei comandi docker come shell script dalla directory con le risorse docker
   ```groovy
-    sh 'echo "Build e tag immagine"'
-    dir('docker') {
-        sh "docker build -f Dockerfile-Fase3 -t esercizio/frontend:latest -t esercizio/frontend:${env.BUILD_NUMBER} ."
-        sh 'docker run -d -p 8080:80 --name esercizio-webapp esercizio/frontend'
-    }   
+stage('Deploy NGINX') {
+  steps {
+      sh 'echo "Build e tag immagine"'
+      dir('docker') {
+          sh "docker build -f Dockerfile-Fase3 -t esercizio/frontend:latest -t esercizio/frontend:${env.BUILD_NUMBER} ."
+          sh 'docker stop esercizio-webapp || true'
+          sh 'docker run -d --rm -p 8080:80 --name esercizio-webapp esercizio/frontend'
+      }                
+  }
+}  
   ```
   - Verifica che http://localhost:8080 risponda correttamente
   - __Attenzione__: nella esecuzione delle build dopo la prima si deve verificare che il contianer avviato alla build precedente sia stato arrestato prima di poter avviare il contianer della nuova build.
